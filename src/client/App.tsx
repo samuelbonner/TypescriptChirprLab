@@ -1,74 +1,43 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Post from "./pages/Post";
+import Admin from "./pages/Admin";
 
 /* HOOK REACT EXAMPLE */
-const App = (props: AppProps) => {
-  const [greeting, setGreeting] = useState<string>("");
+const App: React.FC<AppProps> = (props: AppProps) => {
+  //   const [greeting, setGreeting] = useState<string>("");
 
-  useEffect(() => {
-    async function getGreeting() {
-      try {
-        const res = await fetch("/api/hello");
-        const greeting = await res.json();
-        setGreeting(greeting);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    getGreeting();
-  }, []);
+  //   useEffect(() => {
+  //     async function getGreeting() {
+  //       try {
+  //         const res = await fetch("/api/hello");
+  //         const greeting = await res.json();
+  //         setGreeting(greeting);
+  //       } catch (error) {
+  //         console.log(error);
+  //       }
+  //     }
+  //     getGreeting();
+  //   }, []);
 
   return (
     <BrowserRouter>
-		{/* Nav bar? */}
-		<Switch>
-			<Route exact path="/">
-			<main className="container my-5">
- 				<h1 className="text-primary text-center">Hello! Landing page successfully loaded.</h1>
- 			</main>
-				{/* Placeholder for homepage */}
-			
-			</Route>
-		</Switch>
-	</BrowserRouter>
+      {/* Add in some bootstrap container/row/col? */}
+      {/* Add a Nav bar component & call? */}
+      <Switch>
+        <Route exact path="/" component={Home} />
+        {/* for the main page that displays the list of chirps and a form */}
+        <Route exact path="/add" component={Post} />
+        {/* for the page to add a new chirp */}
+        <Route exact path="/:id/admin" component={Admin} />{" "}
+        {/* for the page that displays a chirp edit form */}
+      </Switch>
+    </BrowserRouter>
   );
 };
 
 interface AppProps {}
-
-/* CLASS REACT EXAMPLE */
-// class App extends React.Component<IAppProps, IAppState> {
-// 	constructor(props: IAppProps) {
-// 		super(props);
-// 		this.state = {
-// 			name: null
-// 		};
-// 	}
-
-// 	async componentDidMount() {
-// 		try {
-// 			let r = await fetch('/api/hello');
-// 			let name = await r.json();
-// 			this.setState({ name });
-// 		} catch (error) {
-// 			console.log(error);
-// 		}
-// 	}
-
-// 	render() {
-// 		return (
-// 			<main className="container my-5">
-// 				<h1 className="text-primary text-center">Hello {this.state.name}!</h1>
-// 			</main>
-// 		);
-// 	}
-// }
-
-// export interface IAppProps {}
-
-// export interface IAppState {
-// 	name: string;
-// }
 
 export default App;

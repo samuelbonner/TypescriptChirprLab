@@ -1,10 +1,10 @@
 // import { GetChirps, GetChirp, UpdateChirp, CreateChirp, DeleteChirp } from "./chirpstore";
-import * as express from "express";
 // import * as chirpStore from "./chirpstore.js"
-import chirpsRouter from "./chirps"
 // import usersRouter from "./users"
+import * as express from "express";
+import chirpsRouter from "./chirps"
 
-let router = express.Router();
+const router = express.Router();
 
 router.use('/chirps', chirpsRouter);
 // router.use('/users', usersRouter);
