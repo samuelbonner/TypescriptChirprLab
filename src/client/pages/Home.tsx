@@ -2,20 +2,20 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { GetChirps } from "../../server/routes/chirpstore";
 
-interface chirp {
+interface chirpInterface {
   id: string;
   user: string;
   message: string;
 }
 
 export const Home: React.FC<HomeProps> = (props: HomeProps) => {
-  const [chirps, setChirps] = React.useState<any[]>([]);
+  const [chirps, setChirps] = React.useState<chirpInterface[]>([]);
 
   React.useEffect(() => {
     getChirps();
   }, []);
 
-  let getChirps = async () => {
+  const getChirps = async () => {
     let response = await fetch("/api/chirps");
     let chirps = await response.json();
     setChirps(chirps);
